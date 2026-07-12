@@ -1,0 +1,60 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+body{
+    background-color: rgba(8, 7, 7, 0.932);
+}
+/*--- Profile ---*/
+
+
+
+.Profile img{
+    display: flex;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+
+
+.Profile{
+    display: flex;
+    flex-direction: column;  
+    align-items: center;  
+    margin: 200px 144px;
+
+}
+
+
+
+/*--- Description List ---*/
+.title{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    color: grey;
+}
+
+
+
+
+/*--- Links ---*/
+.links {
+    display: flex;
+    align-items: center;
+    margin-top: 24px;
+
+    gap: 24px;
+    
+}
+
+.links img {
+    height: 50px;
+    width: 50px;
+}
+.link-item{
+
+}
