@@ -1,0 +1,31 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+
+.login-card{
+    width: 144px;
+    gap: 2px;
+
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+
+}
+
+.login-btn{
+    margin-top:1em ;
+}
