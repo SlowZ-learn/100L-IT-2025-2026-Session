@@ -1,0 +1,21 @@
+
+.box{
+    width: 200px;
+    height: 200px;
+}
+
+.child-1{
+    background-color: blue;
+}
+.child-2{
+    background-color: black;
+}
+.child-3{
+    background-color: brown;
+}
+.parent{
+
+  display: grid;
+  grid-template-columns: repeat(3, ); /* Creates 3 equal-width columns */
+
+}
