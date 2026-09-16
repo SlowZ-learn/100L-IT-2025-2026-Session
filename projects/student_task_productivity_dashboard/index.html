@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>student task and productivity dashboard</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Good day 👋</h2>
+
+      <form id="task-form">
+        <input type="textarea" id="task-input" placeholder="Enter a task" />
+
+        <label for>Difficulty</label>
+        <input type="range" id="difficulty" min="0" max="2" value="1" />
+        <span id="difficulty-output"></span>
+
+        <button type="button" id="addTask">Add Task</button>
+        <button type="button" id="removeTask">Remove Task</button>
+      </form>
+
+      <ul id="task-list"></ul>
+    </div>
+  </body>
+</html>
