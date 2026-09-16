@@ -40,6 +40,7 @@ This repository documents my learning journey during my IT/SIWES training. It co
 
 **Nnamdi Ohasi-Ekeocha**
 
-GitHub: https://github.com/SlowZ-learn
+GitHub: https://github.com/SlowZ-learn  
+E-mail: nnamdinumber1@gmail.com
 
 >Do it tired. Do it uninspired. Just do it
