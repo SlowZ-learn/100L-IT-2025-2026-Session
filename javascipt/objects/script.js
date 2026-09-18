@@ -3,7 +3,7 @@
 //     name:"Jesko",
 //     drive:function () {
 //         console.log("zooom");
-        
+
 //     }
 // }
 
@@ -33,21 +33,29 @@
 //     name: "oneplus-15t",
 //     calling: () =>{
 //         console.log("calling");
-        
+
 //     }
 // }
 // phone.calling()
 
-
+const name = document.getElementById(`name`)
+const sex = document.getElementById(`sex`)
+const complexion = document.getElementById(`complexion`)
 
 
 // this method 
 let person = {
-    name:"ivy",
-    complexion:"light skin",
-    sex:"female",
+    name: "ivy",
+    complexion: "light skin",
+    sex: "female",
 
-    introduce : ()=>{
+    introduce: () => {
         console.log(`my name is ${this.name} and i am ${this.complexion}`)
     }
 }
+name.textContent = person.name
+sex.textContent = person.sex
+
+
+complexion.textContent = person.complexion
+
