@@ -1,5 +1,3 @@
-const API_KEY = "3a407e2f8d41f39ff5e38d3ab95b0bda";
-
 
 // 
 // fetch("https:api.openweathermap.org/data/2.5/weather?q=abuja&appid=" + API_KEY,)
