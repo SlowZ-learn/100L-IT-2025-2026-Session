@@ -8,21 +8,32 @@
     <title>student task and productivity dashboard</title>
   </head>
   <body>
-    <div class="container">
+    <div class="top-container">
+    <div class="task-container">
       <h2>Good day 👋</h2>
 
       <form id="task-form">
         <input type="textarea" id="task-input" placeholder="Enter a task" />
 
         <label for>Difficulty</label>
-        <input type="range" id="difficulty" min="0" max="2" value="1" />
+        <input type="range" id="difficulty" min="0" max="2" value="0" />
         <span id="difficulty-output"></span>
 
         <button type="button" id="addTask">Add Task</button>
-        <button type="button" id="removeTask">Remove Task</button>
+        <button type="button" id="removeTask">Remove last Task</button>
       </form>
 
       <ul id="task-list"></ul>
     </div>
+
+    <div class="progress-container">
+      <h2>Progress</h2>
+      <div class="progression-numbers">
+        <label for="">Total: </label><span id="progression-total"></span>
+        <label for="">Complete: </label><span id="progression-complete"></span>
+        <label for="">Remaining: </label><span id="progression-remaining"></span>
+      </div>
+    </div>
+  </div>
   </body>
 </html>

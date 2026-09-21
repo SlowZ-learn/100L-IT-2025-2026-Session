@@ -1,4 +1,4 @@
-//html stuff
+//to do list elements
 const inputField = document.getElementById("task-input");
 const difficultySlider = document.querySelector("#difficulty");
 const submitBtn = document.getElementById("addTask");
@@ -7,28 +7,116 @@ const taskList = document.getElementById("task-list");
 const difficultyOutput = document.getElementById("difficulty-output");
 
 const difficultyLevel = ["easy", "normal", "hard"];
+
+let currentDifficulty;
+
+//Progress bar elements
+const totalTask = document.getElementById("progression-total");
+const completeTask = document.getElementById("progression-complete");
+const remainingTask = document.getElementById("progression-remaining");
+
+// count variables
+let totalCount = 0;
+let completeCount = 0;
+let remainderTaskCount;
+
+
+
+function remainingCount() {
+    let remainder = totalCount - completeCount;
+    remainderTaskCount = remainder;
+    return remainderTaskCount
+}
+
+// default behaviour for slider
+document.addEventListener("DOMContentLoaded", () => {
+    currentDifficulty = difficultyLevel[0];
+    difficultyOutput.textContent = difficultyLevel[difficultySlider.value];
+})
+
+
 // difficulty slider for the task list
-
-
 difficultySlider.addEventListener("input", () => {
     difficultyOutput.textContent = difficultyLevel[difficultySlider.value];
-    
+    currentDifficulty = difficultyLevel[difficultySlider.value];
+
 })
 
 submitBtn.addEventListener("click", () => {
+
     const task = inputField.value;
     inputField.value = "";
 
+    if (task === "") {
+        return
+    }
+
     const newTask = document.createElement("li");
 
-    newTask.textContent = task;
+    ++totalCount;
+    totalTask.textContent = totalCount;
+
+    remainderTaskCount = remainingCount();
+    remainingTask.textContent = remainingCount();
+
+
+
+
+    const taskCheckbox = document.createElement('input');
+    taskCheckbox.type = 'checkbox';
+
+    taskCheckbox.addEventListener("change", (event) => {
+        if (event.target.checked) {
+            ++completeCount
+            remainderTaskCount = remainingCount();
+            completeTask.textContent = completeCount;
+            remainingTask.textContent = remainderTaskCount
+
+
+        } else {
+            --completeCount;
+            remainderTaskCount = remainingCount();
+            completeTask.textContent = completeCount;
+            remainingTask.textContent = remainderTaskCount
+
+        }
+    })
+
+console.log(typeof(taskCheckbox));
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "delete";
+
+    deleteBtn.addEventListener("click", () => {
+        if (taskCheckbox.checked){
+            --completeCount
+        }
+
+        taskList.removeChild(newTask);
+        --totalCount
+        remainingCount()
+        
+
+        completeTask.textContent = completeCount;
+        remainingTask.textContent = remainderTaskCount
+        totalTask.textContent = totalCount
+
+    })
+
+
+    newTask.textContent = task + " : " + currentDifficulty;
+    newTask.appendChild(taskCheckbox);
+    newTask.appendChild(deleteBtn);
     taskList.appendChild(newTask);
 
-    // adding the slider text to task
-    
 
 })
 
-removeBtn.addEventListener("click", () => {
-    taskList.lastElementChild.remove()
-})
+
+
+
+
+
+
+
+
