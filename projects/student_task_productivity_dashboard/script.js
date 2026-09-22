@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
 difficultySlider.addEventListener("input", () => {
     difficultyOutput.textContent = difficultyLevel[difficultySlider.value];
     currentDifficulty = difficultyLevel[difficultySlider.value];
-
 })
 
 submitBtn.addEventListener("click", () => {
@@ -51,6 +50,10 @@ submitBtn.addEventListener("click", () => {
         return
     }
 
+    
+    let taskEdit = document.createElement("span")
+    taskEdit.textContent = task;
+
     const newTask = document.createElement("li");
 
     ++totalCount;
@@ -58,8 +61,6 @@ submitBtn.addEventListener("click", () => {
 
     remainderTaskCount = remainingCount();
     remainingTask.textContent = remainingCount();
-
-
 
 
     const taskCheckbox = document.createElement('input');
@@ -72,45 +73,50 @@ submitBtn.addEventListener("click", () => {
             completeTask.textContent = completeCount;
             remainingTask.textContent = remainderTaskCount
 
-
         } else {
             --completeCount;
             remainderTaskCount = remainingCount();
             completeTask.textContent = completeCount;
             remainingTask.textContent = remainderTaskCount
-
         }
     })
 
-console.log(typeof(taskCheckbox));
+
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "delete";
 
     deleteBtn.addEventListener("click", () => {
-        if (taskCheckbox.checked){
+        if (taskCheckbox.checked) {
             --completeCount
         }
 
         taskList.removeChild(newTask);
         --totalCount
         remainingCount()
-        
 
         completeTask.textContent = completeCount;
         remainingTask.textContent = remainderTaskCount
         totalTask.textContent = totalCount
-
     })
 
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "edit";
 
-    newTask.textContent = task + " : " + currentDifficulty;
+    editBtn.addEventListener("click", () => {
+        const edit = prompt("enter text ");
+        taskEdit.textContent = edit
+    })
+    
+    
+    newTask.appendChild(taskEdit);
+    newTask.innerHTML+currentDifficulty;
     newTask.appendChild(taskCheckbox);
     newTask.appendChild(deleteBtn);
+    newTask.appendChild(editBtn);
     taskList.appendChild(newTask);
-
-
 })
+
 
 
 
