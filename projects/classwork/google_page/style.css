@@ -1,0 +1,68 @@
+/* Centers everything on the page */
+body {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding-top: 15vh;
+  margin: 0;
+}
+
+/* Styles the links (Gmail, Images) */
+a {
+  text-decoration: none;
+  color: #202124;
+  font-size: 14px;
+  margin: 0 10px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Styles the Google Logo and forces it to a new line */
+img {
+  display: block;
+  margin: 40px auto 30px auto;
+  width: 100px;
+}
+
+/* Styles the Search Box and forces it to a new line */
+input {
+  display: block;
+  margin: 0 auto 30px auto;
+  width: 80%;
+  max-width: 580px;
+  padding: 12px 20px;
+  border: 1px solid #dfe1e5;
+  border-radius: 24px;
+  font-size: 16px;
+  outline: none;
+}
+
+input:hover,
+input:focus {
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  border-color: transparent;
+}
+
+/* Styles the Search Buttons so they sit side-by-side */
+button {
+  background-color: #f8f9fa;
+  border: 1px solid #f8f9fa;
+  border-radius: 4px;
+  color: #3c4043;
+  font-size: 14px;
+  padding: 10px 16px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dadce0;
+  color: #202124;
+}
+
+
+
+
+

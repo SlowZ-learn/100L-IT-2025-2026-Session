@@ -8,32 +8,37 @@
     <title>student task and productivity dashboard</title>
   </head>
   <body>
-    <div class="top-container">
-    <div class="task-container">
-      <h2>Good day 👋</h2>
+    <header></header>
+    <div class="main-container">
+      <div class="api-greeting"></div>
+      <div class="header-section">
+        <div class="task-container">
+          <form id="task-form">
+            <input type="textarea" id="task-input" placeholder="Enter a task" />
 
-      <form id="task-form">
-        <input type="textarea" id="task-input" placeholder="Enter a task" />
+            <label for>Difficulty</label>
+            <input type="range" id="difficulty" min="0" max="2" value="0" />
+            <span id="difficulty-output"></span>
 
-        <label for>Difficulty</label>
-        <input type="range" id="difficulty" min="0" max="2" value="0" />
-        <span id="difficulty-output"></span>
+            <button type="button" id="addTask">Add Task</button>
+            <button type="button" id="removeTask">Remove last Task</button>
+          </form>
+        </div>
 
-        <button type="button" id="addTask">Add Task</button>
-        <button type="button" id="removeTask">Remove last Task</button>
-      </form>
-
-      <ul id="task-list"></ul>
-    </div>
-
-    <div class="progress-container">
-      <h2>Progress</h2>
-      <div class="progression-numbers">
-        <label for="">Total: </label><span id="progression-total"></span>
-        <label for="">Complete: </label><span id="progression-complete"></span>
-        <label for="">Remaining: </label><span id="progression-remaining"></span>
+        <div class="progress-container">
+          <h2>Progress</h2>
+          <div class="progression-numbers">
+            <label for="">Total: </label><span id="progression-total"></span>
+            <label for="">Complete: </label
+            ><span id="progression-complete"></span>
+            <label for="">Remaining: </label
+            ><span id="progression-remaining"></span>
+          </div>
+        </div>
       </div>
+      
+      <div class = "task-list-container">
+        <ul id="task-list"></ul></div>
     </div>
-  </div>
   </body>
 </html>
