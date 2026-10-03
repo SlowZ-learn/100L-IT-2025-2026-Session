@@ -7,13 +7,20 @@
     <link rel="stylesheet" href="style.css" />
     <title>student task and productivity dashboard</title>
   </head>
+
   <body>
-    <header></header>
+    <header class="banner-img">
+      <img src="img/3840x1512_home_gruvbox_7.png" alt="chill banner" srcset="">
+    </header>
+
     <div class="main-container">
-      <div class="api-greeting"></div>
+      <div class="clock-greeting">
+
+      </div>
+
       <div class="header-section">
         <div class="task-container">
-          <form id="task-form">
+          <form id="task-form" class="task-form">
             <input type="textarea" id="task-input" placeholder="Enter a task" />
 
             <label for>Difficulty</label>
@@ -22,6 +29,11 @@
 
             <button type="button" id="addTask">Add Task</button>
             <button type="button" id="removeTask">Remove last Task</button>
+            <select id="category">
+              <option value="Programming">Programming</option>
+              <option value="school"></option>
+          <option value="`    "></option>
+            </select>
           </form>
         </div>
 

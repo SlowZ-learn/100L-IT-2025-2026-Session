@@ -41,6 +41,9 @@ difficultySlider.addEventListener("input", () => {
     currentDifficulty = difficultyLevel[difficultySlider.value];
 })
 
+const categorySelect = document.createElement("category");
+const currentCategory = categorySelect.value;
+
 submitBtn.addEventListener("click", () => {
 
     const task = inputField.value;
@@ -50,7 +53,7 @@ submitBtn.addEventListener("click", () => {
         return
     }
 
-    
+
     let taskEdit = document.createElement("span")
     taskEdit.textContent = task;
 
@@ -107,10 +110,17 @@ submitBtn.addEventListener("click", () => {
         const edit = prompt("enter text ");
         taskEdit.textContent = edit
     })
-    
-    
+
+
+    const difficulty = document.createElement("span");
+    difficulty.textContent = ": " + currentDifficulty;
+
+    const category = document.createElement("span");
+    category.textContent = selectedCategory;    
+
+
     newTask.appendChild(taskEdit);
-    newTask.innerHTML+currentDifficulty;
+    newTask.appendChild(difficulty);
     newTask.appendChild(taskCheckbox);
     newTask.appendChild(deleteBtn);
     newTask.appendChild(editBtn);
