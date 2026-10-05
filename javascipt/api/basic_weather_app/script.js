@@ -34,9 +34,6 @@ searchBtn.addEventListener("click", async () => {
 
         })
 
-
-
-
 })
 
 

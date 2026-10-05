@@ -116,7 +116,7 @@ submitBtn.addEventListener("click", () => {
     difficulty.textContent = ": " + currentDifficulty;
 
     const category = document.createElement("span");
-    category.textContent = selectedCategory;    
+    category.textContent = selectedCategory;
 
 
     newTask.appendChild(taskEdit);
@@ -132,7 +132,20 @@ submitBtn.addEventListener("click", () => {
 
 
 
+async function getTask() {
+    console.log("getTask is running");
+
+    const response = await fetch("http://localhost:3000/tasks")
+    const data = await response.json()
+    console.log(data);
 
 
+    for (const task of data) {
+        const element = document.createElement("li");
+        element.textContent = task;
+        taskList.appendChild(element);
+    }
+}
+getTask()
 
 

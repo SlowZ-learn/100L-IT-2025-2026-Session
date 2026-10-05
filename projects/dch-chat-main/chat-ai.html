@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>DCH AI</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #f1f5f9;
+        min-height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-family: Arial, sans-serif;
+      }
+
+      #chat-container {
+        margin: 30px;
+        background-color: #252568;
+
+        height: 600px;
+        width: 420px;
+
+        overflow: hidden;
+
+        display: flex;
+        flex-direction: column;
+      }
+
+      .chat-header {
+        color: white;
+
+        padding: 20px;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+
+        flex-shrink: 0;
+      }
+
+      .bot-image {
+        width: 80px;
+        height: 80px;
+
+        border-radius: 50%;
+
+        border: 2px solid #e012ad;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        overflow: hidden;
+      }
+
+      .bot-image img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+      }
+
+      .header-text {
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+
+        margin-top: 10px;
+      }
+
+      .chat-header h1 {
+        margin-bottom: 5px;
+
+        font-size: 22px;
+      }
+
+      .chat-header p {
+        opacity: 0.7;
+
+        font-size: 15px;
+      }
+
+      .chat-box {
+        padding: 20px;
+
+        flex: 1;
+
+        overflow-y: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 12px;
+      }
+
+      .message {
+        max-width: 75%;
+
+        padding: 10px 14px;
+
+        border-radius: 15px;
+
+        font-size: 14px;
+
+        line-height: 1.4;
+
+        word-wrap: break-word;
+      }
+
+      /* Bot messages */
+
+      .message.bot {
+        background-color: white;
+
+        color: #222;
+
+        align-self: flex-start;
+
+        border-bottom-left-radius: 4px;
+      }
+
+      /* User messages */
+
+      .message.user {
+        background-color: #e012ad;
+
+        color: white;
+
+        align-self: flex-end;
+
+        border-bottom-right-radius: 4px;
+      }
+
+      #chat-form {
+        display: flex;
+
+        gap: 10px;
+
+        padding: 12px;
+
+        background-color: #252568;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+        flex-shrink: 0;
+      }
+
+      input {
+        padding: 12px 15px;
+
+        flex: 1;
+
+        border-radius: 25px;
+
+        border: none;
+
+        outline: none;
+
+        font-size: 14px;
+      }
+
+      button {
+        border: none;
+
+        background-color: #e012ad;
+
+        color: white;
+
+        border-radius: 25px;
+
+        padding: 0 18px;
+
+        font-size: 14px;
+
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #c80c99;
+      }
+
+      button:disabled {
+        opacity: 0.6;
+
+        cursor: not-allowed;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="chat-container">
+      <!-- CHAT HEADER -->
+
+      <div class="chat-header">
+        <div class="bot-image">
+          <img src="bot.png" alt="DCH AI bot" />
+        </div>
+
+        <div class="header-text">
+          <h1>DCH AI</h1>
+
+          <p>Ask me anything</p>
+        </div>
+      </div>
+
+      <!-- CHAT BOX -->
+
+      <div class="chat-box" id="chat-box">
+        <!-- Initial bot message -->
+
+        <div class="message bot">Hi! How can I help you?</div>
+      </div>
+
+      <!-- CHAT FORM -->
+
+      <form id="chat-form">
+        <input
+          type="text"
+          id="prompt"
+          placeholder="Type your prompt..."
+          autocomplete="off"
+          required
+        />
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <script>
+      const chatForm = document.getElementById("chat-form");
+      const promptInput = document.getElementById("prompt");
+      const chatBox = document.getElementById("chat-box");
+      const button = chatForm.querySelector("button");
+
+      // Put your API key here (Note: standard Gemini keys usually start with "AIzaSy")
+      const API_KEY = "";
+
+      function addMessage(message, sender) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message", sender);
+        messageDiv.textContent = message;
+
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        return messageDiv;
+      }
+
+      async function sendToGemini(prompt) {
+        // 1. Correct endpoint and valid model (gemini-1.5-flash)
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
+
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // 2. Correct payload structure for the Gemini API
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    text: prompt,
+                  },
+                ],
+              },
+            ],
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          // Stringify the error so you can read it clearly in the browser console
+          console.error("Gemini error:", JSON.stringify(data, null, 2));
+          throw new Error(data.error?.message || "Gemini request failed");
+        }
+
+        // 3. Extract the text from the API response
+        return data.candidates[0].content.parts[0].text;
+      }
+
+      chatForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const prompt = promptInput.value.trim();
+
+        if (!prompt) {
+          return;
+        }
+
+        // Show user message
+        addMessage(prompt, "user");
+
+        // Clear input
+        promptInput.value = "";
+
+        // Disable button
+        button.disabled = true;
+        button.textContent = "Thinking...";
+
+        // Show thinking message
+        const thinkingMessage = addMessage("Thinking...", "bot");
+
+        try {
+          const response = await sendToGemini(prompt);
+
+          // Remove thinking message
+          thinkingMessage.remove();
+
+          // Show AI response
+          addMessage(response, "bot");
+        } catch (error) {
+          console.error("Chat error:", error);
+
+          thinkingMessage.remove();
+          addMessage(error.message || "Sorry, something went wrong.", "bot");
+        } finally {
+          button.disabled = false;
+          button.textContent = "Send";
+          promptInput.focus();
+        }
+      });
+    </script>
+  </body>
+</html>
