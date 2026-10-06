@@ -3,54 +3,145 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="script.js" defer></script>
+
+    <script type="module" src="script.js"></script>
     <link rel="stylesheet" href="style.css" />
-    <title>student task and productivity dashboard</title>
+
+    <title>Student Task & Productivity Dashboard</title>
   </head>
 
   <body>
+    <!-- Banner -->
+
     <header class="banner-img">
-      <img src="img/3840x1512_home_gruvbox_7.png" alt="chill banner" srcset="">
+      <img src="img/3840x1512_home_gruvbox_7.png" alt="chill banner" />
     </header>
 
-    <div class="main-container">
-      <div class="clock-greeting">
+    <main class="main-container">
+      <!-- Dashboard heading -->
 
-      </div>
+      <section class="dashboard-heading">
+        <h1>Let's Get Things Done ✨</h1>
+        <p>Stay organised and keep making progress.</p>
+      </section>
 
-      <div class="header-section">
+      <!-- TODO + PROGRESS -->
+
+      <section class="header-section">
+        <!-- Add Task -->
+
         <div class="task-container">
+          <div class="section-title">
+            <span>▣</span>
+            <h2>Add Task</h2>
+          </div>
+
           <form id="task-form" class="task-form">
-            <input type="textarea" id="task-input" placeholder="Enter a task" />
+            <input type="text" id="task-input" placeholder="Enter a task" />
 
-            <label for>Difficulty</label>
-            <input type="range" id="difficulty" min="0" max="2" value="0" />
-            <span id="difficulty-output"></span>
+            <div class="form-row">
+              <!-- Difficulty -->
 
-            <button type="button" id="addTask">Add Task</button>
-            <button type="button" id="removeTask">Remove last Task</button>
-            <select id="category">
-              <option value="Programming">Programming</option>
-              <option value="school"></option>
-          <option value="`    "></option>
-            </select>
+              <div class="form-control">
+                <label for="difficulty">Difficulty</label>
+
+                <input type="range" id="difficulty" min="0" max="2" value="0" />
+
+                <span id="difficulty-output"></span>
+              </div>
+
+              <!-- Category -->
+
+              <div class="form-control">
+                <label for="category">Category</label>
+
+                <select id="category">
+                  <option value="Programming">Programming</option>
+                  <option value="School">School</option>
+                  <option value="Personal">Personal</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+
+            <div class="task-buttons">
+              <button type="submit" id="addTask">Add Task</button>
+
+              <button type="button" id="removeTask">Clear All Tasks</button>
+            </div>
           </form>
         </div>
 
+        <!-- Progress -->
+
         <div class="progress-container">
-          <h2>Progress</h2>
+          <div class="section-title">
+            <span>▣</span>
+            <h2>Progress</h2>
+          </div>
+
           <div class="progression-numbers">
-            <label for="">Total: </label><span id="progression-total"></span>
-            <label for="">Complete: </label
-            ><span id="progression-complete"></span>
-            <label for="">Remaining: </label
-            ><span id="progression-remaining"></span>
+            <div class="progress-item">
+              <span>Total</span>
+              <strong id="progression-total">0</strong>
+            </div>
+
+            <div class="progress-item">
+              <span>Complete</span>
+              <strong id="progression-complete">0</strong>
+            </div>
+
+            <div class="progress-item">
+              <span>Remaining</span>
+              <strong id="progression-remaining">0</strong>
+            </div>
           </div>
         </div>
+      </section>
+
+      <!-- TODO LIST -->
+
+      <section class="task-list-container">
+        <div class="section-title">
+          <span>▣</span>
+          <h2>Tasks</h2>
+        </div>
+
+        <ul id="task-list"></ul>
+      </section>
+    </main>
+
+    <!-- Clear All Modal -->
+
+    <div id="clear-modal" class="modal">
+      <div class="modal-content">
+        <h2>Clear all tasks?</h2>
+
+        <p>This will remove all tasks from your list.</p>
+
+        <div class="modal-buttons">
+          <button type="button" id="cancel-clear">Cancel</button>
+
+          <button type="button" id="confirm-clear">Clear All</button>
+        </div>
       </div>
-      
-      <div class = "task-list-container">
-        <ul id="task-list"></ul></div>
+    </div>
+
+    <!-- Edit Task Modal -->
+
+    <div id="edit-modal" class="modal">
+      <div class="modal-content">
+        <h2>Edit task</h2>
+
+        <input type="text" id="edit-task-input" placeholder="Enter new task" />
+
+        <div class="modal-buttons">
+          <button type="button" id="cancel-edit">Cancel</button>
+
+          <button type="button" id="save-edit">Save</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>

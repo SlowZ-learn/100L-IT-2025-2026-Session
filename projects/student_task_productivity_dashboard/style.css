@@ -1,38 +1,383 @@
+/* Variables */
+
+:root {
+  --bg: #181a19;
+  --card: #202221;
+  --surface: #191b1a;
+  --border: #303332;
+
+  --accent: #08779c;
+  --accent-dark: #07516b;
+
+  --text: #d7d7d7;
+  --muted: #777;
+  --muted-light: #aaa;
+
+  --danger-bg: #352525;
+  --danger-text: #d88;
+
+  --edit-bg: #293438;
+  --edit-text: #9bc5d3;
+}
+
 /* Reset */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  list-style: none;
 }
 
 body {
-  background-color: #1c1e1d;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
 }
+
+/* Banner */
 
 .banner-img img {
   width: 100%;
   height: 250px;
   object-fit: cover;
-  object-position: center;
   display: block;
-} 
-/* holder of the content section */
-.main-container {
-  background-color: #bbb2e0;
-} 
+}
 
-/* the top section display and todolist stuff*/
+/* Main */
+
+.main-container {
+  width: min(1100px, 92%);
+  margin: auto;
+  padding: 35px 0 60px;
+}
+
+.dashboard-heading {
+  margin-bottom: 30px;
+}
+
+.dashboard-heading h1 {
+  margin-bottom: 8px;
+  font-size: 28px;
+}
+
+.dashboard-heading p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Shared Containers */
+
+.task-container,
+.progress-container,
+.task-list-container {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Section Headers */
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  background: var(--accent-dark);
+}
+
+.section-title h2 {
+  font-size: 14px;
+}
+
+/* Top Section */
+
+.header-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+/* Task Form */
+
 .task-form {
   display: flex;
   flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+}
 
-  input {
-    width: 600px;
-    height: 45px;
+#task-input,
+#category {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+#task-input {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+}
+
+#task-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-control label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+#category {
+  height: 35px;
+  padding: 0 8px;
+}
+
+#difficulty {
+  accent-color: var(--accent);
+}
+
+#difficulty-output {
+  color: var(--muted-light);
+  font-size: 12px;
+}
+
+/* Buttons */
+
+.task-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  border: 0;
+  border-radius: 4px;
+  padding: 9px 14px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#addTask {
+  background: var(--accent);
+  color: white;
+}
+
+#removeTask {
+  background: var(--border);
+  color: #bbb;
+}
+
+#addTask:hover {
+  background: #0a91bc;
+}
+
+#removeTask:hover {
+  background: #3a3d3c;
+}
+
+/* Progress */
+
+.progression-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+
+.progress-item {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.progress-item span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.progress-item strong {
+  font-size: 20px;
+}
+
+/* Tasks */
+
+.task-list-container {
+  margin-bottom: 25px;
+}
+
+#task-list {
+  padding: 15px;
+}
+
+#task-list li {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  margin-bottom: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+#task-list li span:nth-child(2),
+#task-list li span:nth-child(3) {
+  color: #6faabd;
+  font-size: 11px;
+}
+
+#task-list input {
+  accent-color: var(--accent);
+}
+
+#task-list button {
+  padding: 5px 9px;
+  font-size: 11px;
+}
+
+#task-list button:first-of-type {
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+#task-list button:last-of-type {
+  background: var(--edit-bg);
+  color: var(--edit-text);
+}
+
+/* Modal */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  width: min(400px, 100%);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 22px;
+}
+
+.modal-content h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.modal-content p {
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+#cancel-clear {
+  background: var(--border);
+  color: var(--text);
+}
+
+#confirm-clear {
+  background: var(--danger-bg);
+  color: var(--danger-text);
+}
+
+#cancel-clear:hover {
+  background: #3a3d3c;
+}
+
+#confirm-clear:hover {
+  background: #452c2c;
+}
+
+/* Responsive */
+
+@media (max-width: 800px) {
+  .header-section {
+    grid-template-columns: 1fr;
   }
-} 
-/* the main flex items of the todo list and progress section */ /* the form container */ /* Progress bar container*/
-.progress-container {
-  background-color: #872020;
+}
+
+@media (max-width: 550px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .task-buttons {
+    flex-direction: column;
+  }
+
+  #task-list li {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Edit Modal */
+
+#edit-task-input {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 0 12px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+#edit-task-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+#cancel-edit {
+  background: var(--border);
+  color: var(--text);
+}
+
+#save-edit {
+  background: var(--accent);
+  color: white;
+}
+
+#cancel-edit:hover {
+  background: #3a3d3c;
+}
+
+#save-edit:hover {
+  background: #0a91bc;
 }
